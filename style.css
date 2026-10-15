@@ -1,0 +1,98 @@
+/* GRACES DIGITAL — cartão vertical inspirado na referência */
+:root {
+  --black: #050505;
+  --brown: #a85d32;
+  --brown-soft: #c27a4b;
+  --white: #f5f3f1;
+  --font: "DM Sans", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { min-height: 100%; background: #eeeeee; }
+body {
+  min-height: 100vh; margin: 0; padding: 22px 12px;
+  display: grid; place-items: center; background: #0d0000;
+  color: var(--white); font-family: var(--font);
+}
+.digital-card {
+  width: min(100%, 360px); min-height: 590px; overflow: hidden;
+  position: relative; display: flex; flex-direction: column;
+  background: var(--black); box-shadow: 0 16px 42px rgba(0,0,0,.12);
+}
+.portrait {
+  position: relative; height: 355px; flex: 0 0 355px;
+  overflow: hidden; background: #15110f;
+}
+.portrait img {
+  width: 100%; height: 100%; display: block;
+  object-fit: cover; object-position: center 25%;
+}
+.portrait__shade {
+  position: absolute; inset: 45% 0 0;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,.72));
+  pointer-events: none;
+}
+.identity {
+  z-index: 1; position: relative; text-align: center;
+  margin-top: -28px; padding: 0 20px;
+}
+.identity__line {
+  width: 76%; height: 1px; margin: 0 auto 6px; background: var(--brown);
+}
+.identity h1 {
+  margin: 0; color: var(--white); font-size: clamp(25px, 7.2vw, 29px);
+  font-weight: 500; line-height: 1.1; letter-spacing: -.055em;
+}
+.identity p {
+  margin: 16px 0 0; color: var(--brown-soft);
+  font-size: 10px; font-weight: 700; letter-spacing: .02em;
+}
+.quick-links {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px; padding: 52px 20px 26px; margin-top: auto;
+}
+.quick-link {
+  min-width: 0; display: flex; flex-direction: column; align-items: center;
+  justify-content: flex-start; gap: 12px; padding: 5px 1px 7px;
+  color: var(--white); text-align: center; text-decoration: none;
+  border-radius: 3px; transition: color 180ms ease, transform 180ms ease;
+}
+.quick-link svg {
+  width: 32px; height: 32px; fill: none; stroke: currentColor;
+  stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round;
+  transition: stroke 180ms ease, transform 180ms ease;
+}
+.quick-link span {
+  color: var(--brown-soft); font-size: 7px; font-weight: 600;
+  letter-spacing: .015em; white-space: nowrap;
+}
+.quick-link:hover, .quick-link:focus-visible {
+  color: var(--brown-soft); outline: none; transform: translateY(-3px);
+}
+.quick-link:hover svg, .quick-link:focus-visible svg {
+  stroke: var(--brown-soft); transform: scale(1.06);
+}
+.quick-link:focus-visible { box-shadow: 0 0 0 1px var(--brown-soft); }
+.card-footer {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 12px 12px 28px;
+}
+.card-footer p {
+  margin: 0; color: #e8e4e1; font-size: 6.5px; font-weight: 700;
+  letter-spacing: .015em; text-align: center;
+}
+.footer-mark { width: 10px; height: 1px; background: var(--brown); opacity: .75; }
+@media (min-width: 500px) {
+  body { padding: 36px; }
+  .digital-card { width: 360px; min-height: 620px; }
+  .portrait { height: 370px; flex-basis: 370px; }
+  .quick-links { padding-top: 54px; }
+}
+@media (max-width: 330px) {
+  .digital-card { min-height: 550px; }
+  .portrait { height: 315px; flex-basis: 315px; }
+  .quick-links { gap: 2px; padding-right: 12px; padding-left: 12px; }
+  .quick-link span { font-size: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}
